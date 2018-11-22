@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Question 5</title>
+</head>
+<body>
+	<form action="#" th:action="@{/uploadCsvFile}"
+		enctype="multipart/form-data" method="post">
+
+		<label>CSV File: </label> <input type="file" name="uploadFile" /> <br />
+		<br /> <input type="submit" value="Upload File" />
+		
+		<div th:if="${fileUploadResult != null}">
+			<label>Result:</label> <b th:utext="${fileUploadResult}" />
+		</div>
+
+	</form>
+	<br />
+	<br />
+	<br />
+	<br />
+
+	<form action="#" th:action="@{/bank}" th:object="${bank}" method="post">
+		<label>Find bank by identifier: </label> 
+		<input type="text" th:field="*{identifier}" th:required="required" />
+		<input type="submit" value="search" />
+		<br /> <br />
+		<div th:if="${bank != null && bank.name != null}">
+			<label>Result:</label> <b th:utext="${bank.name}" />
+		</div>
+	</form>
+
+</body>
+</html>
